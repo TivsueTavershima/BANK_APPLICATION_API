@@ -49,21 +49,25 @@ INSTALLED_APPS = [
 
 
 REST_FRAMEWORK = {
-    
-      "DEFAULD_AUTHENTICATION_CLASSES":[
-      "rest_framework_simplejwt.authentication.JWTAuthentication"
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
-    "DEFAULD_PERMISSION_CLASSES":[
-       "rest_framework.permissions.IsAuthenticated"   
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated"
     ]
 }
 
-SIMPLE_JWT = [
-    "ACCESS_TOKEN_LIFETIME",timedelta(days=1),
-    "SIGNING_KEY",SECRET_KEY,
-    "AUTH_HEADER_TYPES", ("Bearer",),
-    "ALGORITHM", "HS256"
-]
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
 
 
 MIDDLEWARE = [
