@@ -14,3 +14,16 @@ class Transactions(models.Model):
       
 def __str__(self):
           return f"Transaction from {self.sender} to {self.receiver} - {self.status}"
+    
+    
+    
+    
+class LoanApplications(models.Model):
+    user = models.ForeignKey('accounts.Account', on_delete=models.CASCADE,
+                             related_name='user_loan', null=True, blank=True)
+    principal_amount = models.FloatField(null=True, blank=True)
+    is_approved = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user}"
