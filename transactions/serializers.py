@@ -1,9 +1,17 @@
 from rest_framework import serializers
-from .models import Transactions
+from transactions import models
 
 
 
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Transactions
+        model = models.Transactions
         fields = ['sender', 'receiver', 'amount', 'status']
+        
+        
+        
+        
+class LoanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.LoanApplications
+        fields = "__all__"

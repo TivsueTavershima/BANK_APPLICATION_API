@@ -2,7 +2,9 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework import status
-from users import serializers
+#from users import RegisterSerializers
+from .serializers import RegisterSerializer
+import users.serializers as serializers 
 from .models import User
 
 # Authentication Imports
@@ -16,7 +18,7 @@ from rest_framework_simplejwt.tokens import AccessToken,RefreshToken
 @permission_classes([permissions.AllowAny])
 @authentication_classes([])
 def register(request):
-    serializer = serializers(data=request.data)
+    serializer = RegisterSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
 
